@@ -33,4 +33,6 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport:3.1.0'
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
 
+    implementation 'androidx.asynclayoutinflater:asynclayoutinflater:1.0.0'
+
 }
