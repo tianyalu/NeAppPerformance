@@ -35,4 +35,26 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cards_view" />
+
+    <Button
+        android:id="@+id/btn_goto_churn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoChurn"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text"/>
+
+    <Button
+        android:id="@+id/btn_goto_leak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoLeak"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_goto_churn"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

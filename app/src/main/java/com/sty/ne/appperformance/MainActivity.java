@@ -7,12 +7,14 @@ import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 import androidx.core.view.LayoutInflaterCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 
 import com.sty.ne.appperformance.tool.LauncherTimer;
 import com.sty.ne.appperformance.util.FpsUtil;
@@ -73,6 +75,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void findViews() {
         final View viewRoot = findViewById(R.id.root);
+        Button btnGotoChurn = findViewById(R.id.btn_goto_churn);
+        Button btnGotoLeak = findViewById(R.id.btn_goto_leak);
+        btnGotoChurn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ChurnActivity.class));
+            }
+        });
+        btnGotoLeak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LeakActivity.class));
+            }
+        });
         viewRoot.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {

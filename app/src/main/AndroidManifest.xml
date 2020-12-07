@@ -23,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChurnActivity"
+            android:label="churn"/>
+        <activity android:name=".LeakActivity"
+            android:label="leak"/>
     </application>
 
 </manifest>
