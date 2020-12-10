@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
 
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
     <application
         android:name=".app.PerformanceApplication"
         android:allowBackup="true"
@@ -23,10 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChurnActivity"
+        <activity android:name=".activity.ChurnActivity"
             android:label="churn"/>
-        <activity android:name=".LeakActivity"
+        <activity android:name=".activity.LeakActivity"
             android:label="leak"/>
+        <activity
+            android:name=".activity.ProvinceActivity"
+            android:label="network"/>
     </application>
 
 </manifest>

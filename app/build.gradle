@@ -26,6 +26,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -34,5 +35,11 @@ dependencies {
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
 
     implementation 'androidx.asynclayoutinflater:asynclayoutinflater:1.0.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.6.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
 }

@@ -1,9 +1,11 @@
-package com.sty.ne.appperformance;
+package com.sty.ne.appperformance.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+
+import com.sty.ne.appperformance.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

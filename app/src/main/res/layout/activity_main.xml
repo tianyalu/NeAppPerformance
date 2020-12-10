@@ -57,4 +57,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_goto_churn"/>
+
+    <Button
+        android:id="@+id/btn_goto_province"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gotoProvince"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_goto_leak"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

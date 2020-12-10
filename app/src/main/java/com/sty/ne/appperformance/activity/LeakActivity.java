@@ -1,4 +1,4 @@
-package com.sty.ne.appperformance;
+package com.sty.ne.appperformance.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.sty.ne.appperformance.R;
 import com.sty.ne.appperformance.watcher.LeakObservable;
 import com.sty.ne.appperformance.watcher.LeakObserver;
 

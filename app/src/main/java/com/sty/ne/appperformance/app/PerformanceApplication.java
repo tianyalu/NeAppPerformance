@@ -7,6 +7,7 @@ import android.os.Debug;
 import android.os.Trace;
 import android.text.TextUtils;
 
+import com.facebook.stetho.Stetho;
 import com.sty.ne.appperformance.BuildConfig;
 import com.sty.ne.appperformance.tool.LauncherTimer;
 import com.sty.ne.appperformance.util.LogUtil;
@@ -47,6 +48,7 @@ public class PerformanceApplication extends Application {
         application = this;
         context = this.getApplicationContext();
         AppProfile.context = context;
+        Stetho.initializeWithDefaults(context);
         ScreenUtil.init(context);
         async(new Runnable() {
             @Override
