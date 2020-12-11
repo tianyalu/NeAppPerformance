@@ -13,7 +13,10 @@
     </style>
 
     <style name="AppTheme.LauncherTheme1">
-        <item name="android:windowBackground">@drawable/splash_guide</item>
+<!--        <item name="android:windowBackground">@drawable/splash_guide</item>-->
+        <item name="android:windowBackground">@drawable/launch_layout</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>
