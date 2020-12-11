@@ -24,6 +24,7 @@ public class SplashActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         });
     }
@@ -36,6 +37,6 @@ public class SplashActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        finish();
+        //finish();
     }
 }
