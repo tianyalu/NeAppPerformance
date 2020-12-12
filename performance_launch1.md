@@ -121,13 +121,13 @@ adb shell am start -W com.sty.ne.appperformance/.MainActivity
 	显示结果如下：
 
 ```bash
-GGGdeMac-mini:NeAppPerformance tian$ adb shell am start -W com.sty.ne.appperformance/.MainActivity
-Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.sty.ne.appperformance/.MainActivity }
+GGGdeMac-mini:NeAppPerformance tian$ adb shell am start -W com.sty.ne.appperformance/.activity.SplashActivity
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.sty.ne.appperformance/.activity.SplashActivity }
 Status: ok
 Activity: com.sty.ne.appperformance/.MainActivity
-ThisTime: 337  （当前Activity启动耗时）
-TotalTime: 337  （所有Activity启动耗时）
-WaitTime: 359  （AMS启动Activity的总耗时）
+ThisTime: 186  （最后一个Activity启动耗时）
+TotalTime: 395  （所有Activity启动耗时）
+WaitTime: 417  （AMS启动Activity的总耗时）
 Complete
 ```
 
@@ -293,7 +293,9 @@ public void onCreate() {
 
 > 1. 确定能不能异步优化；
 > 2. 执行的方法是否有先后顺序；
-> 3. 需要注意异步后程序能否正常执行。
+> 3. 需要注意异步后程序能否正常执行；
+> 4. 异步线程中使用的`api`不能创建`Handler`；
+> 5. 不能有`UI`操作。
 
 #### 1.4.2 延迟初始化
 
