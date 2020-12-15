@@ -4,16 +4,35 @@
 
 ### 2.1 `Android`绘制原理
 
-渲染操作通常依赖于两个核心组件：`CPU`与`GPU`。`CPU`负责包括`Measure`,`Layout`,`Record`,`Execute`等操作，`GPU`负责`Rasterization`(栅格化)操作。
+#### 2.1.1 `CPU`和`GPU`结构
+
+渲染操作通常依赖于两个核心组件：`CPU`与`GPU`，其结构如下图所示：
+
+![image](https://github.com/tianyalu/NeAppPerformance/raw/master/show/android_draw_cpu_gpu_structure.png)
+
+> 1. 蓝色的`Control`为控制器，用于协调控制整个`CPU`的运行，包括取出指令、控制其他模块的运行等；
+> 2. 绿色的`ALU(Arithmetic Logic Unit)`为算术逻辑单元，用于数学以及逻辑运算；
+> 3. 橙色的`Cache`和`DRAM`分别为缓存和`RAM`，用户存储信息；
+
+`CPU`控制器比较复杂，`ALU`数量较少，因此`CPU`擅长各种复杂的逻辑运算，但不擅长数学尤其是浮点运算。
+
+#### 2.1.2 `CPU`和`GPU`功能
+
+`CPU`负责包括`Measure`,`Layout`,`Record`,`Execute`等操作，`GPU`负责`Rasterization`(栅格化)操作。
 
 ![image](https://github.com/tianyalu/NeAppPerformance/raw/master/show/android_draw_cpu_gpu_function.png)
 
-#### 2.1.1 为什么是`60fps`
+#### 2.1.3 `XML`布局显示到屏幕的流程
+
+![image](https://github.com/tianyalu/NeAppPerformance/raw/master/show/layout_draw_screen_process.png)
+
+#### 2.1.4 为什么是`60fps`
 
 * 人眼与大脑之间的协作无法感知超过`60fps`的画面更新；
 * `12fps`：手动快速翻动书籍的帧率；
 * `24fps`：电影使用的频率；
-* `30fps`：实时音视频的帧率。
+* `30fps`：实时音视频的帧率；
+* `60fps`：手机交互过程中，需要触摸和反馈，需要60帧才能到达不卡顿的效果。
 
 ```java
 public class FpsUtil {
@@ -50,7 +69,7 @@ public class FpsUtil {
 }
 ```
 
-#### 2.1.2 `VSYNC`
+#### 2.1.5 `VSYNC`
 
 * `Android`系统每隔`16ms`发出`VSYNC`信号，触发对`UI`进行渲染；
 * `Refresh Rate`：代表了屏幕在`1S`内刷新屏幕的次数，这取决于硬件的固定参数，如`60HZ`；
@@ -111,7 +130,17 @@ private void installCustomFactory() {
 
 * 移除`Window`默认的`background`；
 * 移除`XML`布局文件中的非必须的`background`；
-* 按需显示占位图片。
+* 按需显示占位图片;
+
+```java
+if(chat.getAuthor().getAvatarId() == 0) {
+  Picasso.with(getContext()).load(android.R.color.transparent).into(char_author_avatar);
+  chat_author_avatar.setBackgroundColor(chat.getAuthor().getColor());
+}else {
+  Picasso.with(getContext()).load(chat.getAuthor().getAvatarId()).into(chat_author_avatar);
+  chat_author_avatar.setBackgroundColor(Color.TRANSPARENT);
+}
+```
 
 * 对于复杂的自定义`view`，`Android`系统无法监控并自动优化；
 * 采用`canvas.clipRect`来帮助系统识别那些可见区域；
