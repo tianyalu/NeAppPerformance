@@ -223,6 +223,57 @@ hprof-conv -z memory2.hprof memory2_after.hprof
 
 参考：[`JVM`共享区深入了解及内存抖动/泄漏排查优化](https://github.com/tianyalu/XxtJvmMemory)
 
+#### 3.3.6 项目实战
+
+模块`lqr_wechat`是一个仿微信的项目，登录账号：`dawa`，密码：`123456`。在多次登录并退出之后会发现`MainActivity`存留多个，表明存在内存泄漏情况。通过`Mat`排查可知因使用网易云信的`SDK`并且没有及时注销引起内存泄漏，解决方式如下：
+
+```java
+    @Override
+    protected void onDestroy() {
+        unRegisterBroadcastReceiver();
+        super.onDestroy();
+        // 在这里将网易云信的注册 注销掉
+        NimAccountSDK.onlineStatusListen(mOnlineStatusObserver, false);
+        NimUserInfoSDK.observeUserInfoUpdate(userInfoobserver, false);
+        NimFriendSDK.observeFriendChangedNotify(changedNotifyObserver, false);
+        NimSystemSDK.observeReceiveSystemMsg(systemMessageObserver, false);
+        NimTeamSDK.observeTeamRemove(teamobserver, false);
+    }
+```
+
+另在低版本上因输入法引起的内存泄漏解决方法：
+
+```java
+@Override
+protected void onDestroy() {
+  unRegisterBroadcastReceiver();
+  super.onDestroy();
+  // InputMethodManagerdManager
+  // mServedView
+  // mNextServedView
+  method("mServedView");
+  method("mNextServedView");
+}
+
+// 暴力置null（反射）
+public void method(String attr){
+  InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+  try {
+    Field field = InputMethodManager.class.getDeclaredField(attr);
+    field.setAccessible(true);
+    Object curView = field.get(im);
+    if(null != curView){
+      Context context = ((View)curView).getContext();
+      if(context == this){
+        field.set(im,null);
+      }
+    }
+  } catch (Exception e) {
+    e.printStackTrace();
+  }
+}
+```
+
 ### 3.4 内存优化总结
 
 #### 3.4.1 工具使用

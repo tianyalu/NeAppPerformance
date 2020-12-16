@@ -1,2 +1,3 @@
+include ':lqr_wechat'
 include ':app'
 rootProject.name = "NeAppPerformance"
